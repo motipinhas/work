@@ -24,7 +24,12 @@ const OverallScore: React.FC<OverallScoreProps> = ({ buckets }) => {
       </div>
       <div className="overall-score-content">
         <div className="overall-score-gauge">
-          <GaugeIndicator stage={overallStage} stageIndex={stageIndex} size="large" />
+          <GaugeIndicator 
+            stage={overallStage} 
+            stageIndex={stageIndex} 
+            percentage={overallScore}
+            size="large" 
+          />
         </div>
         <div className="overall-score-details">
           <div className="overall-score-value" style={{ color: stageColor }}>

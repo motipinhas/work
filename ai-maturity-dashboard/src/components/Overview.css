@@ -31,6 +31,154 @@
   display: block;
 }
 
+.overview-controls {
+  margin-top: 40px;
+  margin-bottom: 24px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.overview-controls-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin-bottom: 16px;
+}
+
+.search-container {
+  flex: 1;
+  min-width: 200px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.filter-container,
+.sort-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-container label,
+.sort-container label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #666;
+}
+
+.filter-select,
+.sort-select {
+  padding: 10px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+  min-width: 150px;
+}
+
+.filter-select:focus,
+.sort-select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.overview-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.export-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.export-button {
+  padding: 8px 16px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.export-button:hover {
+  background: #5568d3;
+}
+
+.export-button:active {
+  transform: translateY(1px);
+}
+
+.selection-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #666;
+}
+
+.clear-selection-button {
+  padding: 6px 12px;
+  background: #f5f5f5;
+  color: #666;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clear-selection-button:hover {
+  background: #e8e8e8;
+  border-color: #ccc;
+}
+
+.compare-button {
+  padding: 6px 16px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.compare-button:hover:not(:disabled) {
+  background: #5568d3;
+}
+
+.compare-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .overview-buckets {
   margin-top: 40px;
 }
@@ -40,12 +188,34 @@
   font-weight: 600;
   color: #333;
   margin: 0 0 24px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.results-count {
+  font-size: 16px;
+  font-weight: 400;
+  color: #666;
 }
 
 .overview-buckets-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+}
+
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 8px;
+  color: #666;
+}
+
+.no-results p {
+  margin: 0;
+  font-size: 16px;
 }
 
 @media (max-width: 1024px) {
@@ -66,6 +236,40 @@
 
   .amdocs-logo-img {
     height: 24px;
+  }
+
+  .overview-controls {
+    padding: 16px;
+  }
+
+  .overview-controls-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-container,
+  .filter-container,
+  .sort-container {
+    width: 100%;
+  }
+
+  .filter-select,
+  .sort-select {
+    width: 100%;
+  }
+
+  .overview-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .export-buttons {
+    width: 100%;
+  }
+
+  .export-button {
+    flex: 1;
   }
 
   .overview-buckets-grid {

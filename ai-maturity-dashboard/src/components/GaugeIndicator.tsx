@@ -7,12 +7,14 @@ interface GaugeIndicatorProps {
   stage: MaturityStage;
   stageIndex: number;
   size?: 'small' | 'medium' | 'large';
+  percentage?: number; // Add this optional prop
 }
 
 const STAGES: MaturityStage[] = ['Not Started', 'Beginning', 'Developing', 'Mature', 'Advanced'];
 
-const GaugeIndicator: React.FC<GaugeIndicatorProps> = ({ stage, stageIndex, size = 'medium' }) => {
-  const percentage = getPercentageFromStage(stageIndex);
+const GaugeIndicator: React.FC<GaugeIndicatorProps> = ({ stage, stageIndex, size = 'medium', percentage }) => {
+  // Use provided percentage if available, otherwise calculate from stageIndex
+  const displayPercentage = percentage !== undefined ? percentage : getPercentageFromStage(stageIndex);
   const color = getStageColor(stage);
   
   const sizeClass = `gauge-${size}`;
@@ -24,7 +26,7 @@ const GaugeIndicator: React.FC<GaugeIndicatorProps> = ({ stage, stageIndex, size
   
   // Calculate circumference for full circle
   const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (percentage / 100) * circumference;
+  const offset = circumference - (displayPercentage / 100) * circumference;
 
   // Calculate positions for stage labels around the circle
   const stageLabels = STAGES.map((stageName, index) => {
@@ -104,7 +106,7 @@ const GaugeIndicator: React.FC<GaugeIndicatorProps> = ({ stage, stageIndex, size
           {/* Center percentage */}
           <div className="gauge-center-content">
             <div className="gauge-center-percentage" style={{ color }}>
-              {Math.round(percentage)}%
+              {Math.round(displayPercentage)}%
             </div>
           </div>
         </div>

@@ -1,0 +1,48 @@
+{
+  "buckets": [
+    {
+      "id": "sdlc",
+      "name": "SDLC Adoption",
+      "stage": "Developing",
+      "stageIndex": 2,
+      "description": "Integration of agentic AI tools and practices into Software Development Life Cycle processes, including code generation, testing, and deployment automation."
+    },
+    {
+      "id": "people",
+      "name": "People",
+      "stage": "Beginning",
+      "stageIndex": 1,
+      "description": "Workforce readiness, training programs, and organizational change management for agentic AI adoption. Includes skills development and cultural transformation."
+    },
+    {
+      "id": "grc",
+      "name": "GRC",
+      "stage": "Mature",
+      "stageIndex": 3,
+      "description": "Governance, Risk, and Compliance frameworks for agentic AI. Includes policies, risk management, audit processes, and regulatory compliance measures."
+    },
+    {
+      "id": "infrastructure",
+      "name": "Infrastructure",
+      "stage": "Developing",
+      "stageIndex": 3,
+      "description": "Technical infrastructure supporting agentic AI, including compute resources, data pipelines, model serving platforms, and monitoring systems."
+    },
+    
+    {
+      "id": "cross-ai-initiatives",
+      "name": "Cross AI Initiatives",
+      "stage": "Developing",
+      "stageIndex": 2,
+      "description": "Cross-functional AI initiatives and collaborative projects that span multiple departments or business units, promoting knowledge sharing and best practices."
+    },
+    {
+      "id": "management-engagement",
+      "name": "Management Engagement",
+      "stage": "Mature",
+      "stageIndex": 3,
+      "description": "Executive and management support for agentic AI initiatives. Includes leadership commitment, strategic alignment, and organizational sponsorship."
+    }
+  ]
+}
+

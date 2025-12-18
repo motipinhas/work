@@ -16,12 +16,20 @@ export const STAGE_COLORS: Record<MaturityStage, string> = {
   'Advanced': '#006400',         // Dark Green
 };
 
+export interface Recommendation {
+  id: string;
+  title: string;
+  description: string;
+  priority: 'low' | 'medium' | 'high';
+}
+
 export interface Bucket {
   id: string;
   name: string;
   stage: MaturityStage;
   stageIndex: number;
   description: string;
+  recommendations?: Recommendation[];
 }
 
 export interface MaturityData {

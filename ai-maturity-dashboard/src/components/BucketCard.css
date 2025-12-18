@@ -9,12 +9,33 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  position: relative;
 }
 
 .bucket-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   border-color: #667eea;
+}
+
+.bucket-card.selected {
+  border-color: #667eea;
+  border-width: 2px;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.bucket-card-checkbox-container {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1;
+}
+
+.bucket-card-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #667eea;
 }
 
 .bucket-card-header {

@@ -1,0 +1,76 @@
+.overview {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.overview-header {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.amdocs-logo {
+  display: inline-block;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  font-size: 16px;
+  transition: opacity 0.2s ease;
+}
+
+.amdocs-logo:hover {
+  opacity: 0.8;
+}
+
+.amdocs-logo-img {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
+.overview-buckets {
+  margin-top: 40px;
+}
+
+.overview-buckets-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 24px 0;
+}
+
+.overview-buckets-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .overview-buckets-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .overview {
+    padding: 16px;
+  }
+
+  .overview-header {
+    top: 16px;
+    right: 16px;
+  }
+
+  .amdocs-logo-img {
+    height: 24px;
+  }
+
+  .overview-buckets-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
