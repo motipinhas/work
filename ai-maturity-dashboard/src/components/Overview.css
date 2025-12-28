@@ -8,8 +8,12 @@
 .overview-header {
   position: absolute;
   top: 20px;
+  left: 20px;
   right: 20px;
   z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .amdocs-logo {
@@ -29,6 +33,30 @@
   height: 32px;
   width: auto;
   display: block;
+}
+
+.back-button {
+  padding: 8px 16px;
+  background: white;
+  color: #667eea;
+  border: 2px solid #667eea;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.back-button:hover {
+  background: #667eea;
+  color: white;
+}
+
+.back-button:active {
+  transform: translateY(1px);
 }
 
 .overview-controls {

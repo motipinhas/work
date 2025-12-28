@@ -1,0 +1,123 @@
+.kpis-view {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+.kpis-view-header {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.back-button {
+  padding: 8px 16px;
+  background: white;
+  color: #667eea;
+  border: 2px solid #667eea;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.back-button:hover {
+  background: #667eea;
+  color: white;
+}
+
+.back-button:active {
+  transform: translateY(1px);
+}
+
+.amdocs-logo {
+  display: inline-block;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  font-size: 16px;
+  transition: opacity 0.2s ease;
+}
+
+.amdocs-logo:hover {
+  opacity: 0.8;
+}
+
+.amdocs-logo-img {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
+.kpis-view-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: 80px;
+}
+
+.kpis-view-title-section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.kpis-view-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: #333;
+}
+
+.kpis-view-subtitle {
+  font-size: 18px;
+  color: #666;
+  margin: 0;
+}
+
+.kpis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 32px;
+}
+
+@media (max-width: 768px) {
+  .kpis-view {
+    padding: 16px;
+  }
+
+  .kpis-view-header {
+    top: 16px;
+    left: 16px;
+    right: 16px;
+  }
+
+  .amdocs-logo-img {
+    height: 24px;
+  }
+
+  .kpis-view-content {
+    padding-top: 70px;
+  }
+
+  .kpis-view-title {
+    font-size: 28px;
+  }
+
+  .kpis-view-subtitle {
+    font-size: 16px;
+  }
+
+  .kpis-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+

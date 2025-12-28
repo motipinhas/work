@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Bucket, MaturityStage } from '../types/maturity';
 import OverallScore from './OverallScore';
 import BucketCard from './BucketCard';
@@ -13,6 +14,7 @@ type SortOption = 'name' | 'stage' | 'stageIndex';
 type FilterOption = MaturityStage | 'all';
 
 const Overview: React.FC<OverviewProps> = ({ buckets }) => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<SortOption>('name');
   const [filterBy, setFilterBy] = useState<FilterOption>('all');
@@ -106,6 +108,13 @@ const Overview: React.FC<OverviewProps> = ({ buckets }) => {
   return (
     <div className="overview">
       <div className="overview-header">
+        <button 
+          onClick={() => navigate('/')}
+          className="back-button"
+          title="Back to Home"
+        >
+          ← Home
+        </button>
         <a 
           href="https://www.amdocs.com" 
           target="_blank" 

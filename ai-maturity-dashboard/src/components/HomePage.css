@@ -1,0 +1,85 @@
+.home-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+  padding: 40px 20px;
+}
+
+.home-page-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.amdocs-logo {
+  display: inline-block;
+  margin-bottom: 24px;
+}
+
+.amdocs-logo-img {
+  height: 40px;
+  width: auto;
+}
+
+.home-page-title {
+  font-size: 42px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: #333;
+}
+
+.home-page-subtitle {
+  font-size: 18px;
+  color: #666;
+  margin: 0;
+}
+
+.home-page-modules {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.modules-section-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 32px 0;
+  color: #333;
+  text-align: center;
+}
+
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 32px;
+  margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+  .home-page {
+    padding: 30px 16px;
+  }
+
+  .home-page-title {
+    font-size: 32px;
+  }
+
+  .home-page-subtitle {
+    font-size: 16px;
+  }
+
+  .modules-section-title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  .modules-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modules-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
