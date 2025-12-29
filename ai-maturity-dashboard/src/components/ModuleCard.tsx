@@ -8,6 +8,7 @@ interface ModuleCardProps {
   icon?: string;
   route: string;
   color?: string;
+  score?: number;
 }
 
 const ModuleCard: React.FC<ModuleCardProps> = ({ 
@@ -15,7 +16,8 @@ const ModuleCard: React.FC<ModuleCardProps> = ({
   description, 
   icon, 
   route,
-  color = '#4a90e2'
+  color = '#4a90e2',
+  score
 }) => {
   const navigate = useNavigate();
 
@@ -36,6 +38,14 @@ const ModuleCard: React.FC<ModuleCardProps> = ({
           </div>
         )}
         <h3 className="module-card-title">{title}</h3>
+        {score !== undefined && (
+          <div className="module-card-score">
+            <span className="module-card-score-label">Overall Score:</span>
+            <span className="module-card-score-value" style={{ color: color }}>
+              {score}%
+            </span>
+          </div>
+        )}
         <p className="module-card-description">{description}</p>
       </div>
       <div className="module-card-arrow">→</div>

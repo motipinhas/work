@@ -1,9 +1,9 @@
 .module-card {
-  background: white;
+  background: var(--bg-secondary);
   border-radius: 12px;
   padding: 32px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 2px solid #e0e0e0;
+  box-shadow: var(--shadow-md);
+  border: 2px solid var(--border-color);
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
@@ -26,7 +26,7 @@
 
 .module-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
   border-color: var(--module-color, #4a90e2);
 }
 
@@ -50,7 +50,7 @@
   font-size: 24px;
   font-weight: 700;
   margin: 0 0 12px 0;
-  color: #333;
+  color: var(--text-secondary);
   transition: color 0.3s ease;
 }
 
@@ -58,16 +58,40 @@
   color: var(--module-color, #4a90e2);
 }
 
+.module-card-score {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+  border-left: 3px solid var(--module-color, #4a90e2);
+}
+
+.module-card-score-label {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.module-card-score-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--module-color, #4a90e2);
+}
+
 .module-card-description {
   font-size: 16px;
-  color: #666;
+  color: var(--text-tertiary);
   margin: 0;
   line-height: 1.5;
+  transition: color 0.3s ease;
 }
 
 .module-card-arrow {
   font-size: 32px;
-  color: #ccc;
+  color: var(--text-tertiary);
   transition: all 0.3s ease;
   margin-left: 24px;
   z-index: 1;

@@ -15,10 +15,10 @@
 .bucket-detail-header-logo .amdocs-logo {
   display: inline-block;
   text-decoration: none;
-  color: #333;
+  color: var(--text-secondary);
   font-weight: 600;
   font-size: 16px;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, color 0.3s ease;
 }
 
 .bucket-detail-header-logo .amdocs-logo:hover {
@@ -49,25 +49,27 @@
 }
 
 .bucket-detail-content {
-  background: white;
-  border: 1px solid #e0e0e0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 40px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .bucket-detail-header {
   text-align: center;
   margin-bottom: 40px;
   padding-bottom: 30px;
-  border-bottom: 2px solid #f0f0f0;
+  border-bottom: 2px solid var(--border-color);
 }
 
 .bucket-detail-title {
   font-size: 36px;
   font-weight: 700;
-  color: #333;
+  color: var(--text-secondary);
   margin: 0 0 16px 0;
+  transition: color 0.3s ease;
 }
 
 .bucket-detail-stage {
@@ -86,34 +88,37 @@
 .bucket-detail-description {
   margin-top: 40px;
   padding-top: 30px;
-  border-top: 2px solid #f0f0f0;
+  border-top: 2px solid var(--border-color);
 }
 
 .bucket-detail-description h2 {
   font-size: 24px;
   font-weight: 600;
-  color: #333;
+  color: var(--text-secondary);
   margin: 0 0 16px 0;
+  transition: color 0.3s ease;
 }
 
 .bucket-detail-description p {
   font-size: 16px;
   line-height: 1.6;
-  color: #666;
+  color: var(--text-tertiary);
   margin: 0;
+  transition: color 0.3s ease;
 }
 
 .bucket-detail-recommendations {
   margin-top: 40px;
   padding-top: 30px;
-  border-top: 2px solid #f0f0f0;
+  border-top: 2px solid var(--border-color);
 }
 
 .bucket-detail-recommendations h2 {
   font-size: 24px;
   font-weight: 600;
-  color: #333;
+  color: var(--text-secondary);
   margin: 0 0 24px 0;
+  transition: color 0.3s ease;
 }
 
 .recommendations-list {
@@ -123,15 +128,15 @@
 }
 
 .recommendation-item {
-  background: #f8f9fa;
-  border: 1px solid #e0e0e0;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 20px;
   transition: all 0.2s ease;
 }
 
 .recommendation-item:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
   border-color: #667eea;
 }
 
@@ -146,9 +151,10 @@
 .recommendation-title {
   font-size: 18px;
   font-weight: 600;
-  color: #333;
+  color: var(--text-secondary);
   margin: 0;
   flex: 1;
+  transition: color 0.3s ease;
 }
 
 .recommendation-priority {
@@ -165,8 +171,9 @@
 .recommendation-description {
   font-size: 14px;
   line-height: 1.6;
-  color: #666;
+  color: var(--text-tertiary);
   margin: 0;
+  transition: color 0.3s ease;
 }
 
 .bucket-detail-error {
@@ -176,8 +183,9 @@
 
 .bucket-detail-error h2 {
   font-size: 24px;
-  color: #333;
+  color: var(--text-secondary);
   margin-bottom: 24px;
+  transition: color 0.3s ease;
 }
 
 @media (max-width: 768px) {

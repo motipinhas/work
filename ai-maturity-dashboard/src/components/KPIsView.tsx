@@ -60,3 +60,4 @@ const KPIsView: React.FC = () => {
 
 export default KPIsView;
 
+

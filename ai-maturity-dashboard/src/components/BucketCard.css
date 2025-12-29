@@ -1,11 +1,11 @@
 .bucket-card {
-  background: white;
-  border: 1px solid #e0e0e0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 24px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -14,7 +14,7 @@
 
 .bucket-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
   border-color: #667eea;
 }
 
@@ -45,8 +45,9 @@
 .bucket-card-title {
   font-size: 18px;
   font-weight: 600;
-  color: #333;
+  color: var(--text-secondary);
   margin: 0 0 8px 0;
+  transition: color 0.3s ease;
 }
 
 .bucket-card-stage {
@@ -66,7 +67,7 @@
 .bucket-card-footer {
   margin-top: auto;
   padding-top: 16px;
-  border-top: 1px solid #f0f0f0;
+  border-top: 1px solid var(--border-color);
 }
 
 .bucket-card-link {

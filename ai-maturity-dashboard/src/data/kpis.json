@@ -83,6 +83,62 @@
           "trend": "up"
         }
       ]
+    },
+    {
+      "id": "dev-experience",
+      "name": "Dev Experience",
+      "description": "Developer experience score for AI tools and workflows",
+      "currentValue": 3.2,
+      "targetValue": 5.0,
+      "scale": {
+        "min": 1,
+        "max": 5,
+        "unit": "score"
+      },
+      "trend": "up",
+      "category": "Quality"
+    },
+    {
+      "id": "cost",
+      "name": "Cost",
+      "description": "Financial cost metrics for AI initiatives",
+      "currentValue": 0,
+      "targetValue": 0,
+      "scale": {
+        "min": 0,
+        "max": 100,
+        "unit": "%"
+      },
+      "trend": "down",
+      "category": "Financial",
+      "subMetrics": [
+        {
+          "id": "estimation-trend",
+          "name": "Estimation Trend",
+          "description": "Trend in cost estimation accuracy",
+          "currentValue": 75.0,
+          "targetValue": 90.0,
+          "scale": {
+            "min": 0,
+            "max": 100,
+            "unit": "%"
+          },
+          "trend": "up"
+        },
+        {
+          "id": "revenue-per-employee",
+          "name": "Overall Revenue per Employee",
+          "description": "Total revenue generated per employee",
+          "currentValue": 125000,
+          "targetValue": 150000,
+          "scale": {
+            "min": 0,
+            "max": 200000,
+            "unit": "$"
+          },
+          "trend": "up"
+        }
+      ]
     }
   ]
 }

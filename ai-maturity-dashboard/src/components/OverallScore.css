@@ -1,11 +1,12 @@
 .overall-score {
-  background: white;
-  color: #333;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
   padding: 40px;
   border-radius: 12px;
   margin-bottom: 40px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e0e0e0;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .overall-score-header {
@@ -17,13 +18,15 @@
   font-size: 32px;
   font-weight: 700;
   margin: 0 0 8px 0;
-  color: #333;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
 }
 
 .overall-score-subtitle {
   font-size: 16px;
   margin: 0;
-  color: #666;
+  color: var(--text-tertiary);
+  transition: color 0.3s ease;
 }
 
 .overall-score-content {
@@ -58,7 +61,8 @@
 
 .overall-score-description {
   font-size: 14px;
-  color: #666;
+  color: var(--text-tertiary);
+  transition: color 0.3s ease;
 }
 
 @media (max-width: 768px) {

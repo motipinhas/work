@@ -1,7 +1,8 @@
 .kpis-view {
   min-height: 100vh;
-  background-color: #f5f5f5;
+  background-color: var(--bg-primary);
   padding: 20px;
+  transition: background-color 0.3s ease;
 }
 
 .kpis-view-header {
@@ -17,7 +18,7 @@
 
 .back-button {
   padding: 8px 16px;
-  background: white;
+  background: var(--bg-secondary);
   color: #667eea;
   border: 2px solid #667eea;
   border-radius: 6px;
@@ -42,10 +43,10 @@
 .amdocs-logo {
   display: inline-block;
   text-decoration: none;
-  color: #333;
+  color: var(--text-secondary);
   font-weight: 600;
   font-size: 16px;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, color 0.3s ease;
 }
 
 .amdocs-logo:hover {
@@ -73,13 +74,15 @@
   font-size: 36px;
   font-weight: 700;
   margin: 0 0 12px 0;
-  color: #333;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
 }
 
 .kpis-view-subtitle {
   font-size: 18px;
-  color: #666;
+  color: var(--text-tertiary);
   margin: 0;
+  transition: color 0.3s ease;
 }
 
 .kpis-grid {
@@ -120,4 +123,5 @@
     gap: 24px;
   }
 }
+
 

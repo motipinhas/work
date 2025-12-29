@@ -1,14 +1,14 @@
 .kpi-card {
-  background: white;
+  background: var(--bg-secondary);
   border-radius: 12px;
   padding: 32px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e0e0e0;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
   transition: all 0.3s ease;
 }
 
 .kpi-card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
   transform: translateY(-2px);
 }
 
@@ -23,15 +23,16 @@
   font-size: 24px;
   font-weight: 700;
   margin: 0;
-  color: #333;
+  color: var(--text-secondary);
   flex: 1;
+  transition: color 0.3s ease;
 }
 
 .kpi-card-category {
   font-size: 12px;
   font-weight: 600;
   color: #667eea;
-  background: #f0f4ff;
+  background: var(--bg-tertiary);
   padding: 4px 12px;
   border-radius: 12px;
   text-transform: uppercase;
@@ -40,9 +41,10 @@
 
 .kpi-card-description {
   font-size: 14px;
-  color: #666;
+  color: var(--text-tertiary);
   margin: 0 0 24px 0;
   line-height: 1.5;
+  transition: color 0.3s ease;
 }
 
 .kpi-card-main-metric {
@@ -63,10 +65,11 @@
 .kpi-card-value-label {
   font-size: 12px;
   font-weight: 500;
-  color: #999;
+  color: var(--text-tertiary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 8px;
+  transition: color 0.3s ease;
 }
 
 .kpi-card-value {
@@ -89,7 +92,7 @@
 .kpi-card-progress-bar-container {
   position: relative;
   height: 24px;
-  background: #f0f0f0;
+  background: var(--bg-tertiary);
   border-radius: 12px;
   overflow: visible;
   margin-bottom: 8px;
@@ -122,19 +125,21 @@
   display: flex;
   justify-content: space-between;
   font-size: 12px;
-  color: #999;
+  color: var(--text-tertiary);
+  transition: color 0.3s ease;
 }
 
 .kpi-card-submetrics {
-  border-top: 2px solid #f0f0f0;
+  border-top: 2px solid var(--border-color);
   padding-top: 24px;
 }
 
 .kpi-card-submetrics-title {
   font-size: 18px;
   font-weight: 600;
-  color: #333;
+  color: var(--text-secondary);
   margin: 0 0 20px 0;
+  transition: color 0.3s ease;
 }
 
 .kpi-card-submetrics-list {
@@ -144,10 +149,11 @@
 }
 
 .kpi-card-submetric {
-  background: #f8f9fa;
+  background: var(--bg-tertiary);
   border-radius: 8px;
   padding: 16px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .kpi-card-submetric-header {
@@ -160,7 +166,8 @@
 .kpi-card-submetric-name {
   font-size: 16px;
   font-weight: 600;
-  color: #333;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
 }
 
 .kpi-card-submetric-value {
@@ -173,14 +180,15 @@
 
 .kpi-card-submetric-description {
   font-size: 13px;
-  color: #666;
+  color: var(--text-tertiary);
   margin: 0 0 12px 0;
   line-height: 1.4;
+  transition: color 0.3s ease;
 }
 
 .kpi-card-submetric-progress {
   height: 8px;
-  background: #e0e0e0;
+  background: var(--bg-tertiary);
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 8px;
@@ -194,8 +202,9 @@
 
 .kpi-card-submetric-target {
   font-size: 12px;
-  color: #999;
+  color: var(--text-tertiary);
   font-weight: 500;
+  transition: color 0.3s ease;
 }
 
 @media (max-width: 768px) {
