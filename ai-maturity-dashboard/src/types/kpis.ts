@@ -6,6 +6,11 @@ export interface Scale {
   unit: string;
 }
 
+export interface HistoricalDataPoint {
+  date: string; // ISO date string (YYYY-MM-DD)
+  value: number;
+}
+
 export interface SubMetric {
   id: string;
   name: string;
@@ -14,6 +19,7 @@ export interface SubMetric {
   targetValue: number;
   scale: Scale;
   trend: Trend;
+  history?: HistoricalDataPoint[];
 }
 
 export interface KPI {
@@ -26,6 +32,7 @@ export interface KPI {
   trend: Trend;
   category?: string;
   subMetrics?: SubMetric[];
+  history?: HistoricalDataPoint[];
 }
 
 export interface KPIData {

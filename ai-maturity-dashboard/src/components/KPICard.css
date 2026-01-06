@@ -51,6 +51,16 @@
   margin-bottom: 32px;
 }
 
+.kpi-card-clickable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.kpi-card-clickable:hover {
+  opacity: 0.8;
+  transform: scale(1.01);
+}
+
 .kpi-card-value-section {
   display: flex;
   gap: 32px;

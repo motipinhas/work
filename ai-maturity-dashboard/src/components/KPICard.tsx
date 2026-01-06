@@ -1,5 +1,6 @@
-import React from 'react';
-import { KPI } from '../types/kpis';
+import React, { useState } from 'react';
+import { KPI, SubMetric } from '../types/kpis';
+import HistoryModal from './HistoryModal';
 import './KPICard.css';
 
 interface KPICardProps {
@@ -7,6 +8,8 @@ interface KPICardProps {
 }
 
 const KPICard: React.FC<KPICardProps> = ({ kpi }) => {
+  const [showHistory, setShowHistory] = useState(false);
+  const [selectedMetric, setSelectedMetric] = useState<{ name: string; description: string; currentValue: number; targetValue: number; unit: string; history?: any[]; color: string } | null>(null);
   const calculatePercentage = (value: number, min: number, max: number): number => {
     return ((value - min) / (max - min)) * 100;
   };
@@ -44,8 +47,44 @@ const KPICard: React.FC<KPICardProps> = ({ kpi }) => {
     kpi.scale.max
   );
 
+  const handleMainMetricClick = () => {
+    if (kpi.history && kpi.history.length > 0) {
+      setSelectedMetric({
+        name: kpi.name,
+        description: kpi.description,
+        currentValue: kpi.currentValue,
+        targetValue: kpi.targetValue,
+        unit: kpi.scale.unit,
+        history: kpi.history,
+        color: getTrendColor(kpi.trend),
+      });
+      setShowHistory(true);
+    }
+  };
+
+  const handleSubMetricClick = (subMetric: SubMetric) => {
+    if (subMetric.history && subMetric.history.length > 0) {
+      setSelectedMetric({
+        name: subMetric.name,
+        description: subMetric.description,
+        currentValue: subMetric.currentValue,
+        targetValue: subMetric.targetValue,
+        unit: subMetric.scale.unit,
+        history: subMetric.history,
+        color: getTrendColor(subMetric.trend),
+      });
+      setShowHistory(true);
+    }
+  };
+
+  const handleCloseHistory = () => {
+    setShowHistory(false);
+    setSelectedMetric(null);
+  };
+
   return (
-    <div className="kpi-card">
+    <>
+      <div className="kpi-card">
       <div className="kpi-card-header">
         <h3 className="kpi-card-title">{kpi.name}</h3>
         {kpi.category && (
@@ -55,7 +94,11 @@ const KPICard: React.FC<KPICardProps> = ({ kpi }) => {
 
       <p className="kpi-card-description">{kpi.description}</p>
 
-      <div className="kpi-card-main-metric">
+      <div 
+        className={`kpi-card-main-metric ${kpi.history && kpi.history.length > 0 ? 'kpi-card-clickable' : ''}`}
+        onClick={handleMainMetricClick}
+        title={kpi.history && kpi.history.length > 0 ? 'Click to view history' : ''}
+      >
         <div className="kpi-card-value-section">
           <div className="kpi-card-current">
             <div className="kpi-card-value-label">Current</div>
@@ -132,7 +175,12 @@ const KPICard: React.FC<KPICardProps> = ({ kpi }) => {
               }
               
               return (
-                <div key={subMetric.id} className="kpi-card-submetric">
+                <div 
+                  key={subMetric.id} 
+                  className={`kpi-card-submetric ${subMetric.history && subMetric.history.length > 0 ? 'kpi-card-clickable' : ''}`}
+                  onClick={() => handleSubMetricClick(subMetric)}
+                  title={subMetric.history && subMetric.history.length > 0 ? 'Click to view history' : ''}
+                >
                   <div className="kpi-card-submetric-header">
                     <span className="kpi-card-submetric-name">{subMetric.name}</span>
                     <span 
@@ -172,6 +220,19 @@ const KPICard: React.FC<KPICardProps> = ({ kpi }) => {
         </div>
       )}
     </div>
+    {showHistory && selectedMetric && (
+      <HistoryModal
+        title={selectedMetric.name}
+        description={selectedMetric.description}
+        currentValue={selectedMetric.currentValue}
+        targetValue={selectedMetric.targetValue}
+        unit={selectedMetric.unit}
+        history={selectedMetric.history || []}
+        onClose={handleCloseHistory}
+        color={selectedMetric.color}
+      />
+    )}
+    </>
   );
 };
 
