@@ -26,3 +26,8 @@ export const calculateOverallKPIScore = (kpis: KPI[]): number => {
   return Math.round(averageScore);
 };
 
+
+
+
+
+

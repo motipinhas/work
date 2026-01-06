@@ -42,36 +42,36 @@ const HomePage: React.FC = () => {
       </div>
       <div className="home-page-main">
         <div className="home-page-header">
-          <div className="home-page-header-top">
-            <a 
-              href="https://www.amdocs.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="amdocs-logo"
-            >
-              <img 
-                src="https://www.amdocs.com/sites/default/files/amdocs-logo.svg" 
-                alt="Amdocs" 
-                className="amdocs-logo-img"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = '/amdocs-logo.svg';
-                }}
-              />
-            </a>
-            <div className="home-page-header-actions">
-              <button
-                className="home-page-pane-toggle"
-                onClick={() => setIsPaneOpen(!isPaneOpen)}
-                aria-label={isPaneOpen ? 'Hide organization pane' : 'Show organization pane'}
+          <button
+            className="home-page-toggle"
+            onClick={() => setIsPaneOpen(!isPaneOpen)}
+            aria-label={isPaneOpen ? 'Hide organization pane' : 'Show organization pane'}
+          >
+            {isPaneOpen ? '◀' : '▶'}
+          </button>
+          <div className="home-page-header-content">
+            <div className="home-page-header-top">
+              <a 
+                href="https://www.amdocs.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="amdocs-logo"
               >
-                {isPaneOpen ? '◀' : '▶'}
-              </button>
+                <img 
+                  src="https://www.amdocs.com/sites/default/files/amdocs-logo.svg" 
+                  alt="Amdocs" 
+                  className="amdocs-logo-img"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = '/amdocs-logo.svg';
+                  }}
+                />
+              </a>
               <ThemeToggle />
             </div>
+            <h1 className="home-page-title">Amdocs AI Fitness</h1>
+            <p className="home-page-subtitle">Agentic AI Progress Status</p>
           </div>
-          <h1 className="home-page-title">Amdocs AI Fitness</h1>
-          <p className="home-page-subtitle">Agentic AI Progress Status</p>
         </div>
 
         <div className="home-page-modules">

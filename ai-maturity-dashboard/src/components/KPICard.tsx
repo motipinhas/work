@@ -111,11 +111,26 @@ const KPICard: React.FC<KPICardProps> = ({ kpi }) => {
           <h4 className="kpi-card-submetrics-title">Sub-Metrics</h4>
           <div className="kpi-card-submetrics-list">
             {kpi.subMetrics.map((subMetric) => {
-              const subPercentage = calculatePercentage(
-                subMetric.currentValue,
-                subMetric.scale.min,
-                subMetric.scale.max
-              );
+              // For active-users metric, calculate percentage from current/target (n/m format)
+              const isActiveUsers = subMetric.id === 'active-users';
+              let displayValue: string;
+              let subPercentage: number;
+              
+              if (isActiveUsers && subMetric.targetValue > 0) {
+                // Calculate percentage: (active users / total users) * 100
+                const percentage = (subMetric.currentValue / subMetric.targetValue) * 100;
+                subPercentage = percentage;
+                // Format as "percentage% (n/m)"
+                displayValue = `${percentage.toFixed(1)}% (${Math.round(subMetric.currentValue)}/${Math.round(subMetric.targetValue)})`;
+              } else {
+                subPercentage = calculatePercentage(
+                  subMetric.currentValue,
+                  subMetric.scale.min,
+                  subMetric.scale.max
+                );
+                displayValue = formatValue(subMetric.currentValue, subMetric.scale.unit);
+              }
+              
               return (
                 <div key={subMetric.id} className="kpi-card-submetric">
                   <div className="kpi-card-submetric-header">
@@ -124,7 +139,7 @@ const KPICard: React.FC<KPICardProps> = ({ kpi }) => {
                       className="kpi-card-submetric-value"
                       style={{ color: getTrendColor(subMetric.trend) }}
                     >
-                      {formatValue(subMetric.currentValue, subMetric.scale.unit)}
+                      {displayValue}
                       <span className="kpi-card-trend" style={{ color: getTrendColor(subMetric.trend) }}>
                         {getTrendIcon(subMetric.trend)}
                       </span>
@@ -140,9 +155,16 @@ const KPICard: React.FC<KPICardProps> = ({ kpi }) => {
                       }}
                     />
                   </div>
-                  <div className="kpi-card-submetric-target">
-                    Target: {formatValue(subMetric.targetValue, subMetric.scale.unit)}
-                  </div>
+                  {!isActiveUsers && (
+                    <div className="kpi-card-submetric-target">
+                      Target: {formatValue(subMetric.targetValue, subMetric.scale.unit)}
+                    </div>
+                  )}
+                  {isActiveUsers && (
+                    <div className="kpi-card-submetric-target">
+                      Target: 100.0% ({Math.round(subMetric.targetValue)}/{Math.round(subMetric.targetValue)})
+                    </div>
+                  )}
                 </div>
               );
             })}

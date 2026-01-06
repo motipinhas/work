@@ -17,7 +17,7 @@
         {
           "id": "active-users",
           "name": "Active Users",
-          "description": "Number of active users utilizing AI tools",
+          "description": "Percentage of active users out of total users",
           "currentValue": 342,
           "targetValue": 500,
           "scale": {
@@ -101,15 +101,15 @@
     {
       "id": "cost",
       "name": "Cost",
-      "description": "Financial cost metrics for AI initiatives",
-      "currentValue": 0,
-      "targetValue": 0,
+      "description": "Financial cost metrics for AI initiatives (average of sub-metrics)",
+      "currentValue": 68.75,
+      "targetValue": 82.5,
       "scale": {
         "min": 0,
         "max": 100,
         "unit": "%"
       },
-      "trend": "down",
+      "trend": "up",
       "category": "Financial",
       "subMetrics": [
         {
