@@ -28,6 +28,11 @@ const BucketCard: React.FC<BucketCardProps> = ({ bucket, isSelected = false, onT
     onToggleSelection?.();
   };
 
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.stopPropagation();
+    onToggleSelection?.();
+  };
+
   return (
     <div className={`bucket-card ${isSelected ? 'selected' : ''}`} onClick={handleClick}>
       {onToggleSelection && (
@@ -35,7 +40,7 @@ const BucketCard: React.FC<BucketCardProps> = ({ bucket, isSelected = false, onT
           <input
             type="checkbox"
             checked={isSelected}
-            onChange={handleCheckboxClick}
+            onChange={handleCheckboxChange}
             onClick={handleCheckboxClick}
             className="bucket-card-checkbox"
             aria-label={`Select ${bucket.name}`}

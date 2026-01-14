@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Bucket, MaturityData } from './types/maturity';
 import AppLayout from './components/AppLayout';

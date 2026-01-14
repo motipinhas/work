@@ -1,4 +1,4 @@
-import { Bucket, MaturityStage, STAGE_INDICES, STAGE_COLORS, Recommendation } from '../types/maturity';
+import { Bucket, MaturityStage, STAGE_COLORS, Recommendation } from '../types/maturity';
 
 export const calculateOverallScore = (buckets: Bucket[]): number => {
   if (buckets.length === 0) return 0;
@@ -22,7 +22,7 @@ export const getPercentageFromStage = (stageIndex: number): number => {
   return (stageIndex / 4) * 100;
 };
 
-export const getRecommendationsForStage = (stage: MaturityStage, stageIndex: number): Recommendation[] => {
+export const getRecommendationsForStage = (_stage: MaturityStage, stageIndex: number): Recommendation[] => {
   const recommendations: Recommendation[] = [];
   
   if (stageIndex < 1) {
