@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { OrganizationNode, OrganizationType, OrganizationData } from '../types/organization';
+import { useOrganization } from '../contexts/OrganizationContext';
 import orgData from '../data/OrgData.json';
 import './OrganizationPane.css';
 
@@ -8,9 +9,10 @@ interface OrganizationPaneProps {
 }
 
 const OrganizationPane: React.FC<OrganizationPaneProps> = ({ onOrganizationSelect }) => {
+  const { selectedOrganization, setSelectedOrganization } = useOrganization();
   const [organization, setOrganization] = useState<OrganizationNode | null>(null);
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set(['amdocs']));
-  const [selectedNode, setSelectedNode] = useState<OrganizationNode | null>(null);
+  const [selectedNode, setSelectedNode] = useState<OrganizationNode | null>(selectedOrganization);
 
   useEffect(() => {
     const data = orgData as OrganizationData;
@@ -31,8 +33,14 @@ const OrganizationPane: React.FC<OrganizationPaneProps> = ({ onOrganizationSelec
 
   const handleNodeSelect = (node: OrganizationNode) => {
     setSelectedNode(node);
+    setSelectedOrganization(node);
     onOrganizationSelect?.(node);
   };
+
+  // Sync selectedNode with context
+  useEffect(() => {
+    setSelectedNode(selectedOrganization);
+  }, [selectedOrganization]);
 
   const getTypeIcon = (type: OrganizationType): string => {
     switch (type) {
@@ -133,6 +141,7 @@ const OrganizationPane: React.FC<OrganizationPaneProps> = ({ onOrganizationSelec
             className="organization-pane-clear"
             onClick={() => {
               setSelectedNode(null);
+              setSelectedOrganization(null);
               onOrganizationSelect?.(null);
             }}
             title="Clear selection"

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { OrganizationNode } from '../types/organization';
+import { useOrganization } from '../contexts/OrganizationContext';
 import OrganizationPane from './OrganizationPane';
 import ThemeToggle from './ThemeToggle';
 import './AppLayout.css';
@@ -9,13 +9,11 @@ interface AppLayoutProps {
 }
 
 const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
-  const [selectedOrganization, setSelectedOrganization] = useState<OrganizationNode | null>(null);
+  const { selectedOrganization, setSelectedOrganization } = useOrganization();
   const [isPaneOpen, setIsPaneOpen] = useState(true);
 
-  const handleOrganizationSelect = (org: OrganizationNode | null) => {
+  const handleOrganizationSelect = (org: any) => {
     setSelectedOrganization(org);
-    // You can add logic here to filter data based on selected organization
-    console.log('Selected organization:', org);
   };
 
   return (
@@ -45,7 +43,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
           </span>
           <button
             className="app-layout-banner-close"
-            onClick={() => handleOrganizationSelect(null)}
+            onClick={() => setSelectedOrganization(null)}
             aria-label="Clear organization selection"
           >
             ×

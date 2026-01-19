@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Bucket, MaturityData } from './types/maturity';
+import { OrganizationProvider } from './contexts/OrganizationContext';
 import AppLayout from './components/AppLayout';
 import HomePage from './components/HomePage';
 import Overview from './components/Overview';
@@ -20,35 +21,37 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="app">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route 
-            path="/dashboard" 
-            element={
-              <AppLayout>
-                <Overview buckets={buckets} />
-              </AppLayout>
-            } 
-          />
-          <Route 
-            path="/bucket/:id" 
-            element={
-              <AppLayout>
-                <BucketDetail buckets={buckets} />
-              </AppLayout>
-            } 
-          />
-          <Route 
-            path="/maturity-kpis" 
-            element={
-              <AppLayout>
-                <KPIsView />
-              </AppLayout>
-            } 
-          />
-        </Routes>
-      </div>
+      <OrganizationProvider>
+        <div className="app">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route 
+              path="/dashboard" 
+              element={
+                <AppLayout>
+                  <Overview buckets={buckets} />
+                </AppLayout>
+              } 
+            />
+            <Route 
+              path="/bucket/:id" 
+              element={
+                <AppLayout>
+                  <BucketDetail buckets={buckets} />
+                </AppLayout>
+              } 
+            />
+            <Route 
+              path="/maturity-kpis" 
+              element={
+                <AppLayout>
+                  <KPIsView />
+                </AppLayout>
+              } 
+            />
+          </Routes>
+        </div>
+      </OrganizationProvider>
     </BrowserRouter>
   );
 }

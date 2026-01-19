@@ -16,16 +16,16 @@ echo "Starting server on http://localhost:$PORT"
 echo "Press Ctrl+C to stop the server"
 echo ""
 
-# Try different server commands based on what's available
-if command -v python3 &> /dev/null; then
+# Prefer npx serve (supports SPA routing) over Python's basic server
+if command -v npx &> /dev/null; then
+    cd "$DIR" && npx serve -p "$PORT" --single
+elif command -v python3 &> /dev/null; then
     cd "$DIR" && python3 -m http.server "$PORT"
 elif command -v python &> /dev/null; then
     cd "$DIR" && python -m SimpleHTTPServer "$PORT"
-elif command -v npx &> /dev/null; then
-    cd "$DIR" && npx serve -p "$PORT"
 else
     echo "Error: No suitable server found!"
-    echo "Please install Python 3 or Node.js to run this server."
+    echo "Please install Node.js (recommended) or Python 3 to run this server."
     exit 1
 fi
 
