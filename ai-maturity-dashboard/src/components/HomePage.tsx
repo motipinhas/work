@@ -116,6 +116,11 @@ const HomePage: React.FC = () => {
     }
   }, []);
 
+  const handleOrganizationSelect = (org: OrganizationNode | null) => {
+    setSelectedOrganization(org);
+    console.log('Selected organization:', org);
+  };
+
   const orderedModules = useMemo(() => {
     const all: { id: HomeModuleId; node: React.ReactNode }[] = [
       {
@@ -196,12 +201,6 @@ const HomePage: React.FC = () => {
     });
   };
 
-  const handleOrganizationSelect = (org: OrganizationNode | null) => {
-    setSelectedOrganization(org);
-    // You can add logic here to filter data based on selected organization
-    console.log('Selected organization:', org);
-  };
-
   return (
     <div className={`home-page ${isPaneOpen ? 'pane-open' : 'pane-closed'}`}>
       <div className={`home-page-sidebar ${isPaneOpen ? 'open' : 'closed'}`}>
@@ -218,15 +217,15 @@ const HomePage: React.FC = () => {
           </button>
           <div className="home-page-header-content">
             <div className="home-page-header-top">
-              <a 
-                href="https://www.amdocs.com" 
-                target="_blank" 
+              <a
+                href="https://www.amdocs.com"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="amdocs-logo"
               >
-                <img 
-                  src="https://www.amdocs.com/sites/default/files/amdocs-logo.svg" 
-                  alt="Amdocs" 
+                <img
+                  src="https://www.amdocs.com/sites/default/files/amdocs-logo.svg"
+                  alt="Amdocs"
                   className="amdocs-logo-img"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
@@ -259,6 +258,7 @@ const HomePage: React.FC = () => {
           </DndContext>
         </div>
       </div>
+
       {selectedOrganization && (
         <div className="home-page-banner">
           <span className="home-page-banner-text">

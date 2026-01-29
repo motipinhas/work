@@ -26,29 +26,29 @@ function App() {
         <div className="app">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route 
-              path="/dashboard" 
+            <Route
+              path="/dashboard"
               element={
                 <AppLayout>
                   <Overview buckets={buckets} />
                 </AppLayout>
-              } 
+              }
             />
-            <Route 
-              path="/bucket/:id" 
+            <Route
+              path="/bucket/:id"
               element={
                 <AppLayout>
                   <BucketDetail buckets={buckets} />
                 </AppLayout>
-              } 
+              }
             />
-            <Route 
-              path="/maturity-kpis" 
+            <Route
+              path="/maturity-kpis"
               element={
                 <AppLayout>
                   <KPIsView />
                 </AppLayout>
-              } 
+              }
             />
             <Route
               path="/ai-fitness-program-status"

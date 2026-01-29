@@ -3,17 +3,14 @@
 # Script to package the application for distribution
 # This creates a ready-to-share zip file
 
+set -e
+
 echo "📦 Packaging AI Maturity Dashboard for Distribution..."
 echo ""
 
 # Build the application
 echo "🔨 Building application..."
 npm run build
-
-if [ $? -ne 0 ]; then
-    echo "❌ Build failed! Please fix errors and try again."
-    exit 1
-fi
 
 # Create distribution folder
 VERSION=$(node -p "require('./package.json').version")
@@ -46,5 +43,4 @@ echo "📦 File: $ZIP_NAME"
 echo ""
 echo "You can now share this zip file with others."
 echo "The recipient should extract it and run run-server.sh (Mac/Linux) or run-server.bat (Windows)"
-
 
