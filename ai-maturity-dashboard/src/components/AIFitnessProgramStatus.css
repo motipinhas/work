@@ -217,6 +217,7 @@ button.ai-fitness-status-card:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  margin-right: 42px;
 }
 
 .ai-fitness-status-card-title {
@@ -274,8 +275,17 @@ button.ai-fitness-status-card:focus-visible {
   z-index: 1;
 }
 
+.ai-fitness-status-expand-divider {
+  height: 1px;
+  width: 100%;
+  background: var(--border-color);
+  margin: 16px 0 12px 0;
+  position: relative;
+  z-index: 1;
+}
+
 .ai-fitness-status-bullets {
-  margin: 16px 0 0 0;
+  margin: 0;
   padding-left: 18px;
   color: var(--text-tertiary);
   transition: color 0.3s ease;

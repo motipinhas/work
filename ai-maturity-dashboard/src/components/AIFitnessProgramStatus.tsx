@@ -1,5 +1,20 @@
 import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {
+  DndContext,
+  DragEndEvent,
+  KeyboardSensor,
+  PointerSensor,
+  closestCenter,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import {
+  SortableContext,
+  arrayMove,
+  rectSortingStrategy,
+  sortableKeyboardCoordinates,
+} from '@dnd-kit/sortable';
 import aiFitnessProgramStatusData from '../data/aiFitnessProgramStatus.json';
 import {
   FITNESS_STATUS_COLORS,
@@ -8,7 +23,10 @@ import {
   FitnessStatusItem,
   getOverallFitnessStatus,
 } from '../types/aiFitnessProgramStatus';
+import SortableFitnessStatusCard from './SortableFitnessStatusCard';
 import './AIFitnessProgramStatus.css';
+
+const FITNESS_STATUS_ORDER_STORAGE_KEY = 'ai-fitness-status-order';
 
 const countByStatus = (items: FitnessStatusItem[]) => {
   return items.reduce(
@@ -24,12 +42,70 @@ const countByStatus = (items: FitnessStatusItem[]) => {
   );
 };
 
+const loadOrder = (): string[] | null => {
+  try {
+    const stored = localStorage.getItem(FITNESS_STATUS_ORDER_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : null;
+  } catch {
+    return null;
+  }
+};
+
+const saveOrder = (order: string[]) => {
+  try {
+    localStorage.setItem(FITNESS_STATUS_ORDER_STORAGE_KEY, JSON.stringify(order));
+  } catch (error) {
+    console.error('Failed to save AI Fitness status order:', error);
+  }
+};
+
+const applyOrder = (itemsToOrder: FitnessStatusItem[], customOrder: string[] | null) => {
+  if (!customOrder || customOrder.length === 0) return itemsToOrder;
+
+  const itemMap = new Map(itemsToOrder.map((i) => [i.id, i]));
+  const ordered: FitnessStatusItem[] = [];
+  const usedIds = new Set<string>();
+
+  customOrder.forEach((id) => {
+    const item = itemMap.get(id);
+    if (item) {
+      ordered.push(item);
+      usedIds.add(id);
+    }
+  });
+
+  itemsToOrder.forEach((item) => {
+    if (!usedIds.has(item.id)) {
+      ordered.push(item);
+    }
+  });
+
+  return ordered;
+};
+
 const AIFitnessProgramStatus: React.FC = () => {
   const navigate = useNavigate();
   const [openIds, setOpenIds] = useState<Set<string>>(() => new Set());
 
   const data = aiFitnessProgramStatusData as FitnessStatusData;
-  const items: FitnessStatusItem[] = data.items ?? [];
+  const baseItems: FitnessStatusItem[] = data.items ?? [];
+  const [items, setItems] = useState<FitnessStatusItem[]>(() => {
+    const saved = loadOrder();
+    return applyOrder(baseItems, saved);
+  });
+  const [orderedIds, setOrderedIds] = useState<string[]>(() => items.map((i) => i.id));
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
   const overallStatus = getOverallFitnessStatus(items);
   const overallColor = FITNESS_STATUS_COLORS[overallStatus] ?? FITNESS_STATUS_COLORS.Gray;
   const counts = countByStatus(items);
@@ -40,6 +116,21 @@ const AIFitnessProgramStatus: React.FC = () => {
       items.filter((i) => (i.bullets?.filter(Boolean).length ?? 0) > 0).map((i) => i.id)
     );
   }, [items]);
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+
+    setItems((prev) => {
+      const oldIndex = prev.findIndex((i) => i.id === active.id);
+      const newIndex = prev.findIndex((i) => i.id === over.id);
+      const next = arrayMove(prev, oldIndex, newIndex);
+      const nextOrder = next.map((i) => i.id);
+      setOrderedIds(nextOrder);
+      saveOrder(nextOrder);
+      return next;
+    });
+  };
 
   const updatedAt = data.updatedAt;
   const updatedAtText = (() => {
@@ -99,76 +190,46 @@ const AIFitnessProgramStatus: React.FC = () => {
           </div>
         </div>
 
-        <div className="ai-fitness-status-grid">
-          {items.map((item) => {
-            const color = FITNESS_STATUS_COLORS[item.status] ?? FITNESS_STATUS_COLORS.Gray;
-            const bullets = item.bullets?.filter(Boolean) ?? [];
-            const isExpandable = itemsWithBullets.has(item.id);
-            const isOpen = openIds.has(item.id);
-            const bulletsId = `ai-fitness-status-bullets-${item.id}`;
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext items={orderedIds} strategy={rectSortingStrategy}>
+            <div className="ai-fitness-status-grid">
+              {items.map((item) => {
+                const color = FITNESS_STATUS_COLORS[item.status] ?? FITNESS_STATUS_COLORS.Gray;
+                const bullets = item.bullets?.filter(Boolean) ?? [];
+                const isExpandable = itemsWithBullets.has(item.id);
+                const isOpen = openIds.has(item.id);
+                const bulletsId = `ai-fitness-status-bullets-${item.id}`;
 
-            const toggle = () => {
-              if (!isExpandable) return;
-              setOpenIds((prev) => {
-                const next = new Set(prev);
-                if (next.has(item.id)) next.delete(item.id);
-                else next.add(item.id);
-                return next;
-              });
-            };
+                const toggle = () => {
+                  if (!isExpandable) return;
+                  setOpenIds((prev) => {
+                    const next = new Set(prev);
+                    if (next.has(item.id)) next.delete(item.id);
+                    else next.add(item.id);
+                    return next;
+                  });
+                };
 
-            const content = (
-              <>
-                <div className="ai-fitness-status-card-header">
-                  <h3 className="ai-fitness-status-card-title">{item.title}</h3>
-                  <div className="ai-fitness-status-card-actions">
-                    <span className="ai-fitness-status-badge">{item.status}</span>
-                    {isExpandable && (
-                      <span
-                        className={`ai-fitness-status-more ${isOpen ? 'open' : ''}`}
-                        aria-hidden="true"
-                      >
-                        More <span className="ai-fitness-status-more-chevron">▾</span>
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                <p className="ai-fitness-status-card-description">{item.description}</p>
-
-                {isExpandable && isOpen && (
-                  <ul id={bulletsId} className="ai-fitness-status-bullets">
-                    {bullets.map((bullet, idx) => (
-                      <li key={`${item.id}-bullet-${idx}`}>{bullet}</li>
-                    ))}
-                  </ul>
-                )}
-              </>
-            );
-
-            return isExpandable ? (
-              <button
-                key={item.id}
-                type="button"
-                className={`ai-fitness-status-card ai-fitness-status-card--expandable ${isOpen ? 'is-open' : ''}`}
-                style={{ '--status-color': color } as React.CSSProperties}
-                onClick={toggle}
-                aria-expanded={isOpen}
-                aria-controls={bulletsId}
-              >
-                {content}
-              </button>
-            ) : (
-              <div
-                key={item.id}
-                className="ai-fitness-status-card"
-                style={{ '--status-color': color } as React.CSSProperties}
-              >
-                {content}
-              </div>
-            );
-          })}
-        </div>
+                return (
+                  <SortableFitnessStatusCard
+                    key={item.id}
+                    item={item}
+                    statusColor={color}
+                    isExpandable={isExpandable}
+                    isOpen={isOpen}
+                    bullets={bullets}
+                    bulletsId={bulletsId}
+                    onToggle={toggle}
+                  />
+                );
+              })}
+            </div>
+          </SortableContext>
+        </DndContext>
       </div>
     </div>
   );
