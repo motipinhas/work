@@ -65,7 +65,7 @@ export function aggregateKPIsForOrganization(orgNode: OrganizationNode | null): 
 /**
  * Aggregates multiple KPI instances into a single KPI
  */
-function aggregateKPI(kpiId: string, kpis: KPI[]): KPI {
+function aggregateKPI(_kpiId: string, kpis: KPI[]): KPI {
   if (kpis.length === 0) {
     throw new Error('Cannot aggregate empty KPI array');
   }
@@ -171,7 +171,7 @@ function aggregateHistory(histories: HistoricalDataPoint[][]): HistoricalDataPoi
 /**
  * Aggregates multiple SubMetric instances into a single SubMetric
  */
-function aggregateSubMetric(subMetricId: string, subMetrics: SubMetric[]): SubMetric {
+function aggregateSubMetric(_subMetricId: string, subMetrics: SubMetric[]): SubMetric {
   if (subMetrics.length === 0) {
     throw new Error('Cannot aggregate empty SubMetric array');
   }

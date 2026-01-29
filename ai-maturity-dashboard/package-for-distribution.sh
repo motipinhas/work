@@ -16,7 +16,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Create distribution folder
-DIST_NAME="ai-maturity-dashboard-v1.0.0"
+DIST_NAME="ai-maturity-dashboard-v1.0.1"
 DIST_DIR="distribution-package"
 
 echo "📁 Creating distribution package..."

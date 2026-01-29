@@ -9,6 +9,9 @@ interface ModuleCardProps {
   route: string;
   color?: string;
   score?: number;
+  statusLabel?: string;
+  statusColor?: string;
+  statusMeta?: string;
 }
 
 const ModuleCard: React.FC<ModuleCardProps> = ({ 
@@ -17,7 +20,10 @@ const ModuleCard: React.FC<ModuleCardProps> = ({
   icon, 
   route,
   color = '#4a90e2',
-  score
+  score,
+  statusLabel,
+  statusColor,
+  statusMeta
 }) => {
   const navigate = useNavigate();
 
@@ -44,6 +50,18 @@ const ModuleCard: React.FC<ModuleCardProps> = ({
             <span className="module-card-score-value" style={{ color: color }}>
               {score}%
             </span>
+          </div>
+        )}
+        {statusLabel && (
+          <div
+            className="module-card-status"
+            style={{ '--status-color': statusColor ?? color } as React.CSSProperties}
+          >
+            <span className="module-card-status-label">Overall Status:</span>
+            <div className="module-card-status-right">
+              <span className="module-card-status-badge">{statusLabel}</span>
+              {statusMeta && <span className="module-card-status-meta">{statusMeta}</span>}
+            </div>
           </div>
         )}
         <p className="module-card-description">{description}</p>

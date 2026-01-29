@@ -7,6 +7,7 @@ import HomePage from './components/HomePage';
 import Overview from './components/Overview';
 import BucketDetail from './components/BucketDetail';
 import KPIsView from './components/KPIsView';
+import AIFitnessProgramStatus from './components/AIFitnessProgramStatus';
 import maturityData from './data/maturityData.json';
 import './App.css';
 
@@ -48,6 +49,14 @@ function App() {
                   <KPIsView />
                 </AppLayout>
               } 
+            />
+            <Route
+              path="/ai-fitness-program-status"
+              element={
+                <AppLayout>
+                  <AIFitnessProgramStatus />
+                </AppLayout>
+              }
             />
           </Routes>
         </div>

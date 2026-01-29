@@ -1,0 +1,55 @@
+{
+  "updatedAt": "2026-01-29",
+  "items": [
+    {
+      "id": "agentic-sdlc",
+      "title": "Agentic SDLC",
+      "description": "Well defined and implemented aSDLC",
+      "status": "Green",
+      "bullets": ["Kickoff meeting with all parties", "Draft blueprint created" ]
+    },
+    {
+      "id": "way-of-working",
+      "title": "Way of working",
+      "description": "Established Agentic driven teams (R&R)",
+      "status": "Green",
+      "bullets": ["First draft of future roles"]
+    },
+    {
+      "id": "grc",
+      "title": "GRC",
+      "description": "GRC Enablement Framework. AI risks are clearly defined, owned, and governed",
+      "status": "Gray",
+      "bullets": []
+    },
+    {
+      "id": "agentic-dna",
+      "title": "Agentic DNA",
+      "description": "Agentic mindset (fast, flexible, democratized, adaptive) is embedded into everything we do",
+      "status": "Yellow",
+      "bullets": ["Managers program is under development"]
+    },
+    {
+      "id": "employee-experience",
+      "title": "Employee Experience",
+      "description": "Employee experience is enhanced, enabling rapid use of AI for daily tasks and experimentation, improving effectiveness & efficiency",
+      "status": "Red",
+      "bullets": ["ASA Fast track is not progressing, many blockers",
+        "Procurement is not engaged"]
+    },
+    {
+      "id": "agentic-architecture",
+      "title": "Agentic Architecture",
+      "description": "Employees can create, share, maintain and use agents, while accessing critical data sources, within well defined guardrails",
+      "status": "Red",
+      "bullets": ["No clear timeline for the project"]
+    },
+    {
+      "id": "internal-communication",
+      "title": "Internal Communication",
+      "description": "Well defined and communicated internal story",
+      "status": "Green",
+      "bullets": ["AI Fitness story was created","Launch video is in the works. Should be ready next week"]
+    }
+  ]
+}

@@ -69,6 +69,52 @@
   border-left: 3px solid var(--module-color, #4a90e2);
 }
 
+.module-card-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+  border-left: 3px solid var(--status-color, var(--module-color, #4a90e2));
+}
+
+.module-card-status-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.module-card-status-label {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.module-card-status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--status-color, var(--module-color, #4a90e2));
+  background: var(--bg-secondary);
+  border: 1px solid var(--status-color, var(--module-color, #4a90e2));
+  white-space: nowrap;
+}
+
+.module-card-status-meta {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+
 .module-card-score-label {
   font-size: 14px;
   color: var(--text-tertiary);

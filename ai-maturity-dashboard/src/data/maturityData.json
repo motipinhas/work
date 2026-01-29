@@ -2,7 +2,7 @@
   "buckets": [
     {
       "id": "sdlc",
-      "name": "SDLC Adoption",
+      "name": "Agentic SDLC",
       "stage": "Developing",
       "stageIndex": 2,
       "description": "Integration of agentic AI tools and practices into Software Development Life Cycle processes, including code generation, testing, and deployment automation."

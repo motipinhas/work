@@ -7,6 +7,13 @@ import { calculateOverallScore } from '../utils/maturityUtils';
 import { calculateOverallKPIScore } from '../utils/kpiUtils';
 import { MaturityData } from '../types/maturity';
 import { KPIData } from '../types/kpis';
+import aiFitnessProgramStatusData from '../data/aiFitnessProgramStatus.json';
+import {
+  FITNESS_STATUS_COLORS,
+  FitnessStatusData,
+  FitnessStatusItem,
+  getOverallFitnessStatus,
+} from '../types/aiFitnessProgramStatus';
 import maturityData from '../data/maturityData.json';
 import kpisData from '../data/kpis.json';
 import './HomePage.css';
@@ -14,6 +21,9 @@ import './HomePage.css';
 const HomePage: React.FC = () => {
   const [maturityScore, setMaturityScore] = useState<number>(0);
   const [kpiScore, setKpiScore] = useState<number>(0);
+  const [programStatus, setProgramStatus] = useState<string>('Gray');
+  const [programStatusColor, setProgramStatusColor] = useState<string>(FITNESS_STATUS_COLORS.Gray);
+  const [programStatusUpdatedAt, setProgramStatusUpdatedAt] = useState<string>('');
   const [selectedOrganization, setSelectedOrganization] = useState<OrganizationNode | null>(null);
   const [isPaneOpen, setIsPaneOpen] = useState(true);
 
@@ -27,6 +37,28 @@ const HomePage: React.FC = () => {
     const kpis = kpisData as KPIData;
     const kpiOverallScore = calculateOverallKPIScore(kpis.kpis);
     setKpiScore(kpiOverallScore);
+
+    // Calculate AI Fitness Program overall status
+    const programData = aiFitnessProgramStatusData as FitnessStatusData;
+    const items: FitnessStatusItem[] = programData.items ?? [];
+    const overall = getOverallFitnessStatus(items);
+    setProgramStatus(overall);
+    setProgramStatusColor(FITNESS_STATUS_COLORS[overall] ?? FITNESS_STATUS_COLORS.Gray);
+
+    const updatedAt = programData.updatedAt;
+    if (updatedAt) {
+      const d = new Date(updatedAt);
+      const formatted = Number.isNaN(d.getTime())
+        ? updatedAt
+        : new Intl.DateTimeFormat('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: '2-digit',
+          }).format(d);
+      setProgramStatusUpdatedAt(`Updated ${formatted}`);
+    } else {
+      setProgramStatusUpdatedAt('');
+    }
   }, []);
 
   const handleOrganizationSelect = (org: OrganizationNode | null) => {
@@ -91,6 +123,16 @@ const HomePage: React.FC = () => {
               route="/maturity-kpis"
               color="#50c878"
               score={kpiScore}
+            />
+            <ModuleCard
+              title="AI Fitness Program Status"
+              description="Status view across core program dimensions. Track overall state (Green/Yellow/Red/Gray) and the key reasons behind each status."
+              icon="🧭"
+              route="/ai-fitness-program-status"
+              color="#667eea"
+              statusLabel={programStatus}
+              statusColor={programStatusColor}
+              statusMeta={programStatusUpdatedAt}
             />
           </div>
         </div>
