@@ -24,6 +24,7 @@ import {
   getOverallFitnessStatus,
 } from '../types/aiFitnessProgramStatus';
 import SortableFitnessStatusCard from './SortableFitnessStatusCard';
+import ThemeToggle from './ThemeToggle';
 import './AIFitnessProgramStatus.css';
 
 const FITNESS_STATUS_ORDER_STORAGE_KEY = 'ai-fitness-status-order';
@@ -150,22 +151,25 @@ const AIFitnessProgramStatus: React.FC = () => {
         >
           ← Home
         </button>
-        <a
-          href="https://www.amdocs.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="amdocs-logo"
-        >
-          <img
-            src="https://www.amdocs.com/sites/default/files/amdocs-logo.svg"
-            alt="Amdocs"
-            className="amdocs-logo-img"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.src = '/amdocs-logo.svg';
-            }}
-          />
-        </a>
+        <div className="ai-fitness-status-header-right">
+          <a
+            href="https://www.amdocs.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="amdocs-logo"
+          >
+            <img
+              src="https://www.amdocs.com/sites/default/files/amdocs-logo.svg"
+              alt="Amdocs"
+              className="amdocs-logo-img"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = '/amdocs-logo.svg';
+              }}
+            />
+          </a>
+          <ThemeToggle />
+        </div>
       </div>
 
       <div className="ai-fitness-status-content">

@@ -53,9 +53,7 @@ function App() {
             <Route
               path="/ai-fitness-program-status"
               element={
-                <AppLayout>
-                  <AIFitnessProgramStatus />
-                </AppLayout>
+                <AIFitnessProgramStatus />
               }
             />
           </Routes>

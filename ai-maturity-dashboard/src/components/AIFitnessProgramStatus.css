@@ -16,6 +16,12 @@
   align-items: center;
 }
 
+.ai-fitness-status-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .back-button {
   padding: 8px 16px;
   background: var(--bg-secondary);
